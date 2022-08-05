@@ -1,6 +1,4 @@
-from importlib.util import set_loader
 import math
-from time import sleep
 from IPopulationCentralValueAnalyser import IPopulationCentralValueAnalyser
 from ..Utilities.SampleUtilities import SampleUtilities
 from ..Utilities.ApproximateNormalTable import ApproximateNormalTable
