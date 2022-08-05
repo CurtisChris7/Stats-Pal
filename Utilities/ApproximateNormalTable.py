@@ -4,8 +4,8 @@ class ApproximateNormalTable:
     """Class which creates an approximated standard normal table"""
 
     def __init__(self, 
-        step: float = 0.01, 
-        precision: int = 2, 
+        step: float = 0.001, 
+        precision: int = 3, 
         lowerbound: float = -5.0, 
         upperbound: float = 5.0) -> None:
         """
