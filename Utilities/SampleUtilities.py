@@ -1,5 +1,4 @@
 import math
-from termios import VLNEXT
 
 class SampleUtilities:
     """Class for reusable sample measurement methods"""
