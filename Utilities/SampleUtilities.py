@@ -42,7 +42,7 @@ class SampleUtilities:
         mean: float = SampleUtilities.estimateMean(values)
         n: int = len(list)
 
-        sum = 0
+        sum: float = 0
         for item in values:
             sum += (item - mean) ** 2
 
