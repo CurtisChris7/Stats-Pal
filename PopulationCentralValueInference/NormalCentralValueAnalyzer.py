@@ -1,9 +1,9 @@
 import math
-from PopulationCentralValueInference.IPopulationCentralValueAnalyser import IPopulationCentralValueAnalyser
+from PopulationCentralValueInference.IPopulationCentralValueAnalyzer import IPopulationCentralValueAnalyzer
 from Utilities.SampleUtilities import SampleUtilities
 from Utilities.ApproximateNormalTable import ApproximateNormalTable
 
-class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyser):
+class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
     """Class representing an analyzer for single dimensional, normally distributed populations"""
 
     def __init__(self, values: list) -> None:

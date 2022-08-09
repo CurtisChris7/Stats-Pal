@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class IPopulationCentralValueAnalyser(ABC):
+class IPopulationCentralValueAnalyzer(ABC):
     """Interface for potential central population value analyser."""
 
     @abstractmethod
