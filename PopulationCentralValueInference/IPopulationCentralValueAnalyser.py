@@ -133,7 +133,48 @@ class IPopulationCentralValueAnalyser(ABC):
         pass
 
     @abstractmethod
-    def twinTailMeanSignificanceTest(self, mean: float, confidenceLevel: float) -> bool:
+    def getTestStatistic(self, testMean: float) -> float:
+        """
+        Description
+        ----------
+        Gets the test statistic 
+
+        Parameters
+        ----------
+        testMean : float
+            The mean value tested against in the null hypothesis
+
+        Returns
+        -------
+        float
+            the value of the test statistic
+        """
+        pass
+
+    @abstractmethod
+    def getTestPower(self, nullMean: float, confidenceLevel: float) -> float:
+        """
+        Description
+        ----------
+        Gets the power statistic from a test
+
+        Parameters
+        ----------
+        nullMean : float
+            The mean value tested against in the null hypothesis
+
+        confidenceLevel : float
+            The confidence level of the test
+
+        Returns
+        -------
+        float
+            the value of the power statistic
+        """
+        pass
+
+    @abstractmethod
+    def twinTailMeanSignificanceAndPowerTest(self, mean: float, confidenceLevel: float) -> bool:
         """
         Description
         ----------
@@ -156,7 +197,7 @@ class IPopulationCentralValueAnalyser(ABC):
         pass
 
     @abstractmethod
-    def rightTailMeanSignificanceTest(self, mean: float, type1Confidence: float, type2Confidence: float) -> tuple:
+    def rightTailMeanSignificanceAndPowerTest(self, mean: float, type1Confidence: float, type2Confidence: float) -> tuple:
         """
         Description
         ----------
@@ -212,7 +253,7 @@ class IPopulationCentralValueAnalyser(ABC):
         pass
 
     @abstractmethod
-    def twinTailMeanSignificanceTest(self, mean: float, type1Confidence: float, type2Confidence: float) -> tuple:
+    def twinTailMeanSignificanceAndPowerTest(self, mean: float, type1Confidence: float, type2Confidence: float) -> tuple:
         """
         Description
         ----------

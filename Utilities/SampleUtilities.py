@@ -40,7 +40,7 @@ class SampleUtilities:
             The standard deviation of the provided values
         """
         mean: float = SampleUtilities.estimateMean(values)
-        n: int = len(list)
+        n: int = len(values)
 
         sum: float = 0
         for item in values:

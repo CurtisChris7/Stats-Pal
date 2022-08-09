@@ -105,6 +105,11 @@ class ApproximateNormalTable:
             The approximate area under the standard normal curve
         """
         val = round(val, self.precision)
+        if val < self.lowerbound:
+            return 0
+        elif val > self.uppperbound:
+            return 1
+
         return self.table[val]
 
     def getZValue(self, targetArea: float) -> float:
