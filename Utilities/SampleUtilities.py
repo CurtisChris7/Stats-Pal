@@ -1,4 +1,5 @@
 import math
+import random
 
 class SampleUtilities:
     """Class for reusable sample measurement methods"""
@@ -47,3 +48,22 @@ class SampleUtilities:
             sum += (item - mean) ** 2
 
         return math.sqrt(sum / (n-1))
+
+    @staticmethod
+    def bootstrap(values: list) -> list:
+        """
+        Description
+        ----------
+        Performs a single resampling with replacement from a sample
+
+        Parameters
+        ----------
+        values : list
+            A population sample of floating point numbers
+
+        Returns
+        -------
+        list
+            The standard deviation of the provided values
+        """
+        return random.choices(values, k=len(values))
