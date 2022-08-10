@@ -1,6 +1,6 @@
 import math
 
-from Utilities.INormalDistribution import INormalDistribution
+from Utilities.NormalDistriution.INormalDistribution import INormalDistribution
 
 class ApproximateNormalTable(INormalDistribution):
     """Class which creates an approximated standard normal table"""
