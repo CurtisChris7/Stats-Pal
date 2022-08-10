@@ -174,7 +174,7 @@ class IPopulationCentralValueAnalyzer(ABC):
         pass
 
     @abstractmethod
-    def twinTailMeanSignificanceAndPowerTest(self, mean: float, confidenceLevel: float) -> bool:
+    def twinTailMeanSignificanceTest(self, mean: float, confidenceLevel: float) -> bool:
         """
         Description
         ----------
@@ -225,7 +225,7 @@ class IPopulationCentralValueAnalyzer(ABC):
         pass
 
     @abstractmethod
-    def leftTailMeanSignificanceTest(self, mean: float, type1Confidence: float, type2Confidence: float) -> tuple:
+    def leftTailMeanSignificanceAndPowerTest(self, mean: float, type1Confidence: float, type2Confidence: float) -> tuple:
         """
         Description
         ----------

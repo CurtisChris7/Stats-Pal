@@ -16,7 +16,6 @@ class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
         ----------
         values: list
             The list of floats representing a sample from the population distribution
-
         """
         self.sample: list = values
         self.mean: float = SampleUtilities.estimateMean(values)
