@@ -1,12 +1,13 @@
 import math
-from scipy.stats import t
+from Utilities.ITDistribution import ITDistribution
 from Utilities.SampleUtilities import SampleUtilities
 from PopulationCentralValueInference.IPopulationCentralValueAnalyzer import IPopulationCentralValueAnalyzer
+from Utilities.SciPyTDistribution import SciPyTDistribution
 
 class TDistributionCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
     """Class representing an analyzer for single dimensional population under a student's t distribution"""
 
-    def __init__(self, values: list) -> None:
+    def __init__(self, values: list, tDist: ITDistribution = SciPyTDistribution()) -> None:
         """
         Description
         ----------
@@ -16,18 +17,22 @@ class TDistributionCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
         ----------
         values: list
             The list of floats representing a sample from the population distribution
+
+        tDist: ITDistribution
+            The t distribution used by the class
         """
-        self.values = values
+        self.values: list = values
         self.mean: float = SampleUtilities.estimateMean(values)
         self.stdDev: float = SampleUtilities.estimateStdDev(values)
-        self.n = len(values)
-        self.df = self.n - 1
+        self.n: int = len(values)
+        self.df: int = self.n - 1
+        self.tDist = tDist
 
     def getMean(self) -> float:
         return self.mean
 
     def getConfidenceInterval(self, confidenceLevel: float) -> tuple:
-        width: float = t.ppf(confidenceLevel + ((1 - confidenceLevel)/2), self.df) * self.stdDev / math.sqrt(self.n)
+        width: float = self.tDist.getTValue(confidenceLevel + ((1 - confidenceLevel)/2), self.df) * self.stdDev / math.sqrt(self.n)
         return (self.mean - width, self.mean + width)
 
     def sampleSizeForConfidenceInterval(self, confidenceLevel: float, width: float) -> float:
@@ -43,17 +48,17 @@ class TDistributionCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
 
     def rightTailMeanSignificanceTest(self, mean: float, type1Confidence: float) -> bool:
         tVal: float = self.getTestStatistic(mean)
-        pVal: float = 1 - t.cdf(tVal, self.df)
+        pVal: float = 1 - self.tDist.getRightTailArea(tVal, self.df)
         return pVal <= (1-type1Confidence)
 
     def leftTailMeanSignificanceTest(self, mean: float, type1Confidence: float) -> bool:
         tVal: float = self.getTestStatistic(mean)
-        pVal: float = t.cdf(tVal, self.df)
+        pVal: float = self.tDist.getRightTailArea(tVal, self.df)
         return pVal <= (1-type1Confidence)
 
     def twinTailMeanSignificanceTest(self, mean: float, type1Confidence: float) -> bool:
         tVal: float = abs(self.getTestStatistic(mean))
-        pVal: float = 2 * (1 - t.cdf(tVal, self.df))
+        pVal: float = 2 * (1 - self.tDist.getRightTailArea(tVal, self.df))
         return pVal <= (1-type1Confidence)
 
     """POWER TESTING METHODS ARE NOT IMPLEMENTED"""

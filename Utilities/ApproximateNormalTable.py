@@ -1,6 +1,8 @@
 import math
 
-class ApproximateNormalTable:
+from Utilities.INormalDistribution import INormalDistribution
+
+class ApproximateNormalTable(INormalDistribution):
     """Class which creates an approximated standard normal table"""
 
     def __init__(self, 
@@ -30,11 +32,11 @@ class ApproximateNormalTable:
 
         """
 
-        self.step = step
-        self.precision = precision
-        self.lowerbound = lowerbound
-        self.uppperbound = upperbound
-        self.table = self.approximateCdf()
+        self.step: float = step
+        self.precision: int = precision
+        self.lowerbound: float = lowerbound
+        self.uppperbound: float = upperbound
+        self.table: dict = self.__approximateCdf()
         
     @staticmethod
     def pdf(x : float):
@@ -55,7 +57,7 @@ class ApproximateNormalTable:
         """
         return math.exp(-(x**2) / 2) / (math.sqrt(2) * math.pi)
 
-    def approximateCdf(self) -> dict:
+    def __approximateCdf(self) -> dict:
         """
         Description
         ----------
@@ -89,21 +91,6 @@ class ApproximateNormalTable:
         return rightTailCdf
 
     def getRightTailArea(self, val: float) -> float:
-        """
-        Description
-        ----------
-        Finds the right tail area value of a given z value
-
-        Parameters
-        ----------
-        val : float
-            A candidate z value
-
-        Returns
-        -------
-        float
-            The approximate area under the standard normal curve
-        """
         val = round(val, self.precision)
         if val < self.lowerbound:
             return 0
@@ -113,22 +100,6 @@ class ApproximateNormalTable:
         return self.table[val]
 
     def getZValue(self, targetArea: float) -> float:
-        """
-        Description
-        ----------
-        Finds the smallest value of z in the approximated distribution which has
-        atleast the target area under the curve
-
-        Parameters
-        ----------
-        targetArea : float
-            The desired area under the standard normal curve
-
-        Returns
-        -------
-        float
-            The corresponding z value for that area under the approximated curves
-        """
         if targetArea < self.table[self.lowerbound]:
             return self.lowerbound
 

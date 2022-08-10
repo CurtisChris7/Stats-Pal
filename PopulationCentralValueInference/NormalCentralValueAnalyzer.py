@@ -1,12 +1,13 @@
 import math
 from PopulationCentralValueInference.IPopulationCentralValueAnalyzer import IPopulationCentralValueAnalyzer
+from Utilities.INormalDistribution import INormalDistribution
 from Utilities.SampleUtilities import SampleUtilities
 from Utilities.ApproximateNormalTable import ApproximateNormalTable
 
 class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
     """Class representing an analyzer for single dimensional, normally distributed populations"""
 
-    def __init__(self, values: list) -> None:
+    def __init__(self, values: list, normalDist: INormalDistribution = ApproximateNormalTable())  -> None:
         """
         Description
         ----------
@@ -16,12 +17,15 @@ class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
         ----------
         values: list
             The list of floats representing a sample from the population distribution
+
+        normalDist: INormalDistribution
+            Normal distribution utility
         """
         self.sample: list = values
         self.mean: float = SampleUtilities.estimateMean(values)
         self.stdDev: float = SampleUtilities.estimateStdDev(values)
         self.n: int = len(values)
-        self.normalTable: ApproximateNormalTable = ApproximateNormalTable()
+        self.normalTable: INormalDistribution = normalDist
 
     def getMean(self) -> float:
         return self.mean
