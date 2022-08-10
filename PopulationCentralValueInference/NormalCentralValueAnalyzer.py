@@ -1,8 +1,8 @@
 import math
 from PopulationCentralValueInference.IPopulationCentralValueAnalyzer import IPopulationCentralValueAnalyzer
-from Utilities.INormalDistribution import INormalDistribution
+from Utilities.NormalDistriution.INormalDistribution import INormalDistribution
 from Utilities.SampleUtilities import SampleUtilities
-from Utilities.ApproximateNormalTable import ApproximateNormalTable
+from Utilities.NormalDistriution.ApproximateNormalTable import ApproximateNormalTable
 
 class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
     """Class representing an analyzer for single dimensional, normally distributed populations"""

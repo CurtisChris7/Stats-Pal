@@ -1,8 +1,8 @@
 import math
-from Utilities.ITDistribution import ITDistribution
+from Utilities.TDistribution.ITDistribution import ITDistribution
 from Utilities.SampleUtilities import SampleUtilities
 from PopulationCentralValueInference.IPopulationCentralValueAnalyzer import IPopulationCentralValueAnalyzer
-from Utilities.SciPyTDistribution import SciPyTDistribution
+from Utilities.TDistribution.SciPyTDistribution import SciPyTDistribution
 
 class TDistributionCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
     """Class representing an analyzer for single dimensional population under a student's t distribution"""

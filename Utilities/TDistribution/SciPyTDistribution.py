@@ -1,6 +1,6 @@
 from scipy.stats import t
 
-from Utilities.ITDistribution import ITDistribution
+from Utilities.TDistribution.ITDistribution import ITDistribution
 
 class SciPyTDistribution(ITDistribution):
     """Class implementing the ITDistribution interface using scipy"""
