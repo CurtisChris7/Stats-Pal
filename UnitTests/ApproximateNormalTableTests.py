@@ -1,5 +1,5 @@
 import unittest
-from Utilities.ApproximateNormalTable import ApproximateNormalTable
+from Utilities.NormalDistriution.ApproximateNormalTable import ApproximateNormalTable
 
 class ApproximateNormalTableMethods(unittest.TestCase):
 
