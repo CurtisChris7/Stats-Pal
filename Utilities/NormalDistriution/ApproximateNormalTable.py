@@ -37,7 +37,7 @@ class ApproximateNormalTable(INormalDistribution):
         self.lowerbound: float = lowerbound
         self.uppperbound: float = upperbound
         self.table: dict = self.__approximateCdf()
-        
+
     @staticmethod
     def pdf(x : float):
         """
@@ -55,6 +55,8 @@ class ApproximateNormalTable(INormalDistribution):
         float
             The value of the probability density function for that point
         """
+        if x == None:
+            raise ValueError("Cannot pass a null value")
         return math.exp(-(x**2) / 2) / (math.sqrt(2) * math.pi)
 
     def __approximateCdf(self) -> dict:
@@ -91,6 +93,8 @@ class ApproximateNormalTable(INormalDistribution):
         return rightTailCdf
 
     def getLeftTailArea(self, val: float) -> float:
+        if val == None:
+            raise ValueError("Cannot pass a null value")
         val = round(val, self.precision)
         if val < self.lowerbound:
             return 0
@@ -100,8 +104,14 @@ class ApproximateNormalTable(INormalDistribution):
         return self.table[val]
 
     def getZValue(self, targetArea: float) -> float:
-        if targetArea < self.table[self.lowerbound]:
-            return self.lowerbound
+        if targetArea == None or targetArea < 0:
+            raise ValueError("Cannot pass a negative or null area value")
+
+        if targetArea > 1:
+            raise ValueError("Target area cannot be greater than one")
+
+        #if targetArea < self.table[self.lowerbound]:
+        #    return self.lowerbound
 
         for key in self.table:
             val = self.table[key]
