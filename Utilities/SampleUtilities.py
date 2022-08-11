@@ -40,6 +40,25 @@ class SampleUtilities:
         float
             The standard deviation of the provided values
         """
+        return math.sqrt(SampleUtilities.estimateVariance(values))
+
+    @staticmethod
+    def estimateVariance(values: list) -> float:
+        """
+        Description
+        ----------
+        Estimates the variance of a list of values
+
+        Parameters
+        ----------
+        values : list
+            A population sample of floating point numbers
+
+        Returns
+        -------
+        float
+            The variance of the provided values
+        """
         mean: float = SampleUtilities.estimateMean(values)
         n: int = len(values)
 
@@ -47,7 +66,7 @@ class SampleUtilities:
         for item in values:
             sum += (item - mean) ** 2
 
-        return math.sqrt(sum / (n-1))
+        return sum / (n-1)
 
     @staticmethod
     def bootstrap(values: list) -> list:

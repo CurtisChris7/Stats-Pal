@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 class IPopulationCentralValueAnalyzer(ABC):
-    """Interface for potential central population value analyser."""
+    """Interface for potential central population value analyser"""
 
     @abstractmethod
     def getMean(self) -> float:
@@ -22,7 +22,7 @@ class IPopulationCentralValueAnalyzer(ABC):
         """
         Description
         ----------
-        Contructs a confidence interval of the population
+        Contructs a confidence interval of the population mean
 
         Parameters
         ----------
@@ -114,7 +114,7 @@ class IPopulationCentralValueAnalyzer(ABC):
         """
         Description
         ----------
-        Performs a right tail level of significance test to determine if the research
+        Performs a left tail level of significance test to determine if the research
         hypotheses is accepted or not
 
         Parameters
@@ -178,7 +178,7 @@ class IPopulationCentralValueAnalyzer(ABC):
         """
         Description
         ----------
-        Performs a right tail level of significance test to determine if the research
+        Performs a twin tail level of significance test to determine if the research
         hypotheses is accepted or not
 
         Parameters
@@ -229,7 +229,7 @@ class IPopulationCentralValueAnalyzer(ABC):
         """
         Description
         ----------
-        Performs a right tail level of significance test to determine which of the null or
+        Performs a left tail level of significance test to determine which of the null or
         research hypothesis are accepted or rejected
 
         Parameters
@@ -257,7 +257,7 @@ class IPopulationCentralValueAnalyzer(ABC):
         """
         Description
         ----------
-        Performs a right tail level of significance test to determine which of the null or
+        Performs a twin tail level of significance test to determine which of the null or
         research hypothesis are accepted or rejected
 
         Parameters

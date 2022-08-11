@@ -52,17 +52,17 @@ class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
 
     def rightTailMeanSignificanceTest(self, mean: float, type1Confidence: float) -> bool:
         zVal: float = self.getTestStatistic(mean)
-        pVal: float = 1 - self.normalTable.getRightTailArea(zVal)
+        pVal: float = 1 - self.normalTable.getLeftTailArea(zVal)
         return pVal <= (1-type1Confidence)
 
     def leftTailMeanSignificanceTest(self, mean: float, type1Confidence: float) -> bool:
         zVal: float = self.getTestStatistic(mean)
-        pVal: float = self.normalTable.getRightTailArea(zVal)
+        pVal: float = self.normalTable.getLeftTailArea(zVal)
         return pVal <= (1-type1Confidence)
 
     def twinTailMeanSignificanceTest(self, mean: float, type1Confidence: float) -> bool:
         zVal: float = abs(self.getTestStatistic(mean))
-        pVal: float = 2 * (1 - self.normalTable.getRightTailArea(zVal))
+        pVal: float = 2 * (1 - self.normalTable.getLeftTailArea(zVal))
         return pVal <= (1-type1Confidence)
 
     """TESTING METHODS FOR BOTH THE NULL AND RESEARCH HYPOTHESIS"""
@@ -70,7 +70,7 @@ class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
     def getTestPower(self, nullMean: float, confidenceLevel: float) -> float:
         zVal: float = self.normalTable.getZValue(confidenceLevel)
         betaVal: float = zVal - ( math.sqrt(self.n) * abs(nullMean - self.mean) / self.stdDev)
-        return 1 - self.normalTable.getRightTailArea(betaVal)
+        return 1 - self.normalTable.getLeftTailArea(betaVal)
 
     def rightTailMeanSignificanceAndPowerTest(self, mean: float, type1Confidence: float, type2Confidence: float) -> tuple:
         rejectNull: bool = self.rightTailMeanSignificanceTest(mean, type1Confidence)

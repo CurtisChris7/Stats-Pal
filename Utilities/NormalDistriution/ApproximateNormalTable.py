@@ -90,7 +90,7 @@ class ApproximateNormalTable(INormalDistribution):
 
         return rightTailCdf
 
-    def getRightTailArea(self, val: float) -> float:
+    def getLeftTailArea(self, val: float) -> float:
         val = round(val, self.precision)
         if val < self.lowerbound:
             return 0

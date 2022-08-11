@@ -1,14 +1,14 @@
 from abc import ABC, abstractmethod
 
 class ITDistribution(ABC):
-    """Interface for student's t distribution utilities"""
+    """Interface for student's t distribution"""
 
     @abstractmethod
-    def getRightTailArea(self, val: float, df: int) -> float:
+    def getLeftTailArea(self, val: float, df: int) -> float:
         """
         Description
         ----------
-        Finds the right tail area value of a given t value and degrees of freedom
+        Finds the left tail area value of a given t value and degrees of freedom
 
         Parameters
         ----------

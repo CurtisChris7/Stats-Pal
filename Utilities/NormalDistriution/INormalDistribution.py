@@ -4,11 +4,11 @@ class INormalDistribution(ABC):
     """Interface for normal distribution utilities"""
 
     @abstractmethod
-    def getRightTailArea(self, val: float) -> float:
+    def getLeftTailArea(self, val: float) -> float:
         """
         Description
         ----------
-        Finds the right tail area value of a given z value
+        Finds the left tail area value of a given z value
 
         Parameters
         ----------

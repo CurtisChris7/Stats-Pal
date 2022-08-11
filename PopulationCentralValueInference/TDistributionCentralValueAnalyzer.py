@@ -48,17 +48,17 @@ class TDistributionCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
 
     def rightTailMeanSignificanceTest(self, mean: float, type1Confidence: float) -> bool:
         tVal: float = self.getTestStatistic(mean)
-        pVal: float = 1 - self.tDist.getRightTailArea(tVal, self.df)
+        pVal: float = 1 - self.tDist.getLeftTailArea(tVal, self.df)
         return pVal <= (1-type1Confidence)
 
     def leftTailMeanSignificanceTest(self, mean: float, type1Confidence: float) -> bool:
         tVal: float = self.getTestStatistic(mean)
-        pVal: float = self.tDist.getRightTailArea(tVal, self.df)
+        pVal: float = self.tDist.getLeftTailArea(tVal, self.df)
         return pVal <= (1-type1Confidence)
 
     def twinTailMeanSignificanceTest(self, mean: float, type1Confidence: float) -> bool:
         tVal: float = abs(self.getTestStatistic(mean))
-        pVal: float = 2 * (1 - self.tDist.getRightTailArea(tVal, self.df))
+        pVal: float = 2 * (1 - self.tDist.getLeftTailArea(tVal, self.df))
         return pVal <= (1-type1Confidence)
 
     """POWER TESTING METHODS ARE NOT IMPLEMENTED"""

@@ -5,7 +5,7 @@ from Utilities.TDistribution.ITDistribution import ITDistribution
 class SciPyTDistribution(ITDistribution):
     """Class implementing the ITDistribution interface using scipy"""
 
-    def getRightTailArea(self, val: float, df: int) -> float:
+    def getLeftTailArea(self, val: float, df: int) -> float:
         return t.cdf(val, df)
 
     def getTValue(self, targetArea: float, df: int) -> float:
