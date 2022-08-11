@@ -8,11 +8,11 @@ class BinomialDistribution(IBinomialDistribution):
         return math.factorial(total) / (math.factorial(chosen) * math.factorial(total-chosen))
 
     def pmf(self, successes: int, trials: int, likelihood: float) -> float:
-        if successes < 0 or successes == None:
+        if successes == None or successes < 0:
             raise ValueError("Cannot have negative or null successes")
-        if trials < 0 or trials == None:
+        if trials == None or trials < 0:
             raise ValueError("Cannot have negative or null trials")
-        if likelihood < 0 or likelihood == None:
+        if likelihood == None or likelihood < 0:
             raise ValueError("Cannot have negative or null likelihood")
         if likelihood > 1:
             raise ValueError("Cannot have likelihood greater than 1")
@@ -21,11 +21,11 @@ class BinomialDistribution(IBinomialDistribution):
         return self.__choose(trials, successes) * (likelihood ** successes) * ((1 - likelihood) ** (trials - successes))
 
     def getLeftTailArea(self, successes: int, trials: int, likelihood: float) -> float:
-        if successes < 0 or successes == None:
+        if successes == None or successes < 0:
             raise ValueError("Cannot have negative or null successes")
-        if trials < 0 or trials == None:
+        if trials == None or trials < 0:
             raise ValueError("Cannot have negative or null trials")
-        if likelihood < 0 or likelihood == None:
+        if likelihood == None or likelihood < 0:
             raise ValueError("Cannot have negative or null likelihood")
         if likelihood > 1:
             raise ValueError("Cannot have likelihood greater than 1")
