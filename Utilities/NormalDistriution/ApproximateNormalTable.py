@@ -31,6 +31,14 @@ class ApproximateNormalTable(INormalDistribution):
             The right most value of the approximated standard normal distribution
 
         """
+        if step == None or step < 0:
+            raise ValueError("Step cannot be negative or null")
+        if precision == None or precision < 0:
+            raise ValueError("Precision cannot be negative or null")
+        if lowerbound == None:
+            raise ValueError("Lowerbound cannot null")
+        if upperbound == None:
+            raise ValueError("Upperbound cannot null")
 
         self.step: float = step
         self.precision: int = precision
@@ -94,7 +102,8 @@ class ApproximateNormalTable(INormalDistribution):
 
     def getLeftTailArea(self, val: float) -> float:
         if val == None:
-            raise ValueError("Cannot pass a null value")
+            raise ValueError("Cannot pass a z null value")
+
         val = round(val, self.precision)
         if val < self.lowerbound:
             return 0
@@ -106,12 +115,8 @@ class ApproximateNormalTable(INormalDistribution):
     def getZValue(self, targetArea: float) -> float:
         if targetArea == None or targetArea < 0:
             raise ValueError("Cannot pass a negative or null area value")
-
         if targetArea > 1:
             raise ValueError("Target area cannot be greater than one")
-
-        #if targetArea < self.table[self.lowerbound]:
-        #    return self.lowerbound
 
         for key in self.table:
             val = self.table[key]
