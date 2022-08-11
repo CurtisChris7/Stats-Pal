@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 class INormalDistribution(ABC):
-    """Interface for normal distribution utilities"""
+    """Interface for normal distribution"""
 
     @abstractmethod
     def getLeftTailArea(self, val: float) -> float:

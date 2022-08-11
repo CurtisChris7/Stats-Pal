@@ -87,6 +87,26 @@ class IPopulationCentralValueAnalyzer(ABC):
         pass
 
     @abstractmethod
+    def getTestStatistic(self, testMean: float) -> float:
+        """
+        Description
+        ----------
+        Gets the test statistic 
+
+        Parameters
+        ----------
+        testMean : float
+            The mean value tested against in the null hypothesis
+
+        Returns
+        -------
+        float
+            the value of the test statistic
+        """
+        pass
+
+
+    @abstractmethod
     def rightTailMeanSignificanceTest(self, mean: float, confidenceLevel: float) -> bool:
         """
         Description
@@ -133,21 +153,25 @@ class IPopulationCentralValueAnalyzer(ABC):
         pass
 
     @abstractmethod
-    def getTestStatistic(self, testMean: float) -> float:
+    def twinTailMeanSignificanceTest(self, mean: float, confidenceLevel: float) -> bool:
         """
         Description
         ----------
-        Gets the test statistic 
+        Performs a twin tail level of significance test to determine if the research
+        hypotheses is accepted or not
 
         Parameters
         ----------
-        testMean : float
+        mean : float
             The mean value tested against in the null hypothesis
+
+        confidenceLevel : float
+            The confidence level of the test
 
         Returns
         -------
-        float
-            the value of the test statistic
+        bool
+            true if the research hypotheses is accepted, false if rejected
         """
         pass
 
@@ -170,29 +194,6 @@ class IPopulationCentralValueAnalyzer(ABC):
         -------
         float
             the value of the power statistic
-        """
-        pass
-
-    @abstractmethod
-    def twinTailMeanSignificanceTest(self, mean: float, confidenceLevel: float) -> bool:
-        """
-        Description
-        ----------
-        Performs a twin tail level of significance test to determine if the research
-        hypotheses is accepted or not
-
-        Parameters
-        ----------
-        mean : float
-            The mean value tested against in the null hypothesis
-
-        confidenceLevel : float
-            The confidence level of the test
-
-        Returns
-        -------
-        bool
-            true if the research hypotheses is accepted, false if rejected
         """
         pass
 
