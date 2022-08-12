@@ -57,12 +57,18 @@ class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
         if delta == None:
             raise ValueError("Cannot have null delta")
 
-
         type1ZVal: float = self.normalTable.getZValue(1 - ((1-type1Confidence)/2))
         type2ZVal: float = self.normalTable.getZValue(1 - (1 - type2Confidence))
         return self.n * (self.stdDev ** 2) * ((type1ZVal + type2ZVal) ** 2) / (delta ** 2)
 
     def sampleSizeForConfidenceInterval(self, confidenceLevel: float, width: float) -> float:
+        if confidenceLevel == None or confidenceLevel < 0:
+            raise ValueError("Cannot have negative or null confidenceLevel")
+        if confidenceLevel > 1:
+            raise ValueError("Cannot have a confidenceLevel over 1")
+        if width == None or width < 0:
+            raise ValueError("Cannot have negative or null width")
+
         zVal: float = self.normalTable.getZValue(1 - ((1-confidenceLevel)/2))
         e: float = width / 2
         return self.n * (zVal**2) * (self.stdDev**2) / (e**2)

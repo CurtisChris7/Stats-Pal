@@ -29,6 +29,13 @@ class NormalBinomialAnalyzer(IBinomialPopulationAnalyzer):
         normalDist: INormalDistribution
             Normal distribution utility
         """
+        if values == None or len(values) == 0:
+            raise ValueError("Cannot have empty or null values")
+        if biomnialDist == None:
+            raise ValueError("Cannot have null biomnialDist")
+        if normalDist == None:
+            raise ValueError("Cannot have null normalDist")
+        
         self.values: list = values
         self.binomialDist: IBinomialDistribution = biomnialDist
         self.normalDist: INormalDistribution = normalDist
