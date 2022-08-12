@@ -11,7 +11,7 @@ class NormalBinomialAnalyzer(IBinomialPopulationAnalyzer):
 
     def __init__(self, 
         values: list, 
-        biomnialDist: IBinomialDistribution = BinomialDistribution(),
+        binomialDist: IBinomialDistribution = BinomialDistribution(),
         normalDist: INormalDistribution = ApproximateNormalTable()) -> None:
         """
         Description
@@ -23,7 +23,7 @@ class NormalBinomialAnalyzer(IBinomialPopulationAnalyzer):
         values: list
             The list of floats representing a sample from the population distribution
 
-        biomnialDist: IBinomialDistribution
+        binomialDist: IBinomialDistribution
             Binomial distribution utility
 
         normalDist: INormalDistribution
@@ -31,13 +31,13 @@ class NormalBinomialAnalyzer(IBinomialPopulationAnalyzer):
         """
         if values == None or len(values) == 0:
             raise ValueError("Cannot have empty or null values")
-        if biomnialDist == None:
-            raise ValueError("Cannot have null biomnialDist")
+        if binomialDist == None:
+            raise ValueError("Cannot have null binomialDist")
         if normalDist == None:
             raise ValueError("Cannot have null normalDist")
         
         self.values: list = values
-        self.binomialDist: IBinomialDistribution = biomnialDist
+        self.binomialDist: IBinomialDistribution = binomialDist
         self.normalDist: INormalDistribution = normalDist
         self.likelihood = CategoricalSampleUtilities.estimateLikelihood(values)
         self.standardError = CategoricalSampleUtilities.estimateStandardError(values)
@@ -50,7 +50,18 @@ class NormalBinomialAnalyzer(IBinomialPopulationAnalyzer):
         return self.standardError
 
     def getConfidenceInterval(self, confidenceLevel: float) -> tuple:
+        if confidenceLevel == None or confidenceLevel < 0:
+            raise ValueError("Cannot have negative or null confidenceLevel")
+        if confidenceLevel > 1:
+            raise ValueError("Cannot have a confidenceLevel over 1")
+
         alpha: float = (1 - confidenceLevel) / 2
+
+        if self.likelihood == 0:
+            return (0, 1 - math.pow((alpha/2), 1/self.n))
+        if self.likelihood == 1:
+            return (math.pow((alpha/2), 1/self.n), 1)
+
         zSquaredVal: float = (self.normalDist.getZValue(1 - alpha) ** 2)
 
         newSuccessCount: float = (self.likelihood * self.n ) + (0.5 * zSquaredVal)
@@ -62,24 +73,62 @@ class NormalBinomialAnalyzer(IBinomialPopulationAnalyzer):
         return (newLikelihood - width, newLikelihood + width)
 
     def sampleSizeForConfidenceInterval(self, confidenceLevel: float, width: float) -> int:
+        if confidenceLevel == None or confidenceLevel < 0:
+            raise ValueError("Cannot have negative or null confidenceLevel")
+        if confidenceLevel > 1:
+            raise ValueError("Cannot have a confidenceLevel over 1")
+        if width == None or width < 0:
+            raise ValueError("Cannot have negative or null width")
+
         alpha: float = (1 - confidenceLevel) / 2
-        e: float = width / 2
-        return (self.normalDist.getZValue(1 - alpha) ** 2) * self.likelihood * (1 - self.likelihood) / (e ** 2)
+        return (self.normalDist.getZValue(1 - alpha) ** 2) * self.likelihood * (1 - self.likelihood) / (width ** 2)
 
     def getTestStatistic(self, testLikelihood: float) -> float:
+        if testLikelihood == None or testLikelihood < 0:
+            raise ValueError("Cannot have negative or null testLikelihood")
+        if testLikelihood > 1:
+            raise ValueError("Cannot have a testLikelihood over 1")
+
         return (self.likelihood - testLikelihood) / self.standardError
 
     def rightTailtLikelihoodSignificanceTest(self, testLikelihood: float, confidenceLevel: float) -> bool:
+        if confidenceLevel == None or confidenceLevel < 0:
+            raise ValueError("Cannot have negative or null confidenceLevel")
+        if confidenceLevel > 1:
+            raise ValueError("Cannot have a confidenceLevel over 1")
+        if testLikelihood == None or testLikelihood < 0:
+            raise ValueError("Cannot have negative or null testLikelihood")
+        if testLikelihood > 1:
+            raise ValueError("Cannot have a testLikelihood over 1")
+
         expectedSuccess: int = math.floor(testLikelihood * self.n)
         pVal: float = 1 - self.binomialDist.getLeftTailArea(expectedSuccess, self.n, testLikelihood)
         return pVal <= 1 - confidenceLevel
 
     def leftTailLikelihoodSignificanceTest(self, testLikelihood: float, confidenceLevel: float) -> bool:
+        if confidenceLevel == None or confidenceLevel < 0:
+            raise ValueError("Cannot have negative or null confidenceLevel")
+        if confidenceLevel > 1:
+            raise ValueError("Cannot have a confidenceLevel over 1")
+        if testLikelihood == None or testLikelihood < 0:
+            raise ValueError("Cannot have negative or null testLikelihood")
+        if testLikelihood > 1:
+            raise ValueError("Cannot have a testLikelihood over 1")
+
         expectedSuccess: int = math.floor(testLikelihood * self.n)
         pVal: float = self.binomialDist.getLeftTailArea(expectedSuccess, self.n, testLikelihood)
         return pVal <= 1 - confidenceLevel
 
     def twinTailLikelihoodSignificanceTest(self, testLikelihood: float, confidenceLevel: float) -> bool:
+        if confidenceLevel == None or confidenceLevel < 0:
+            raise ValueError("Cannot have negative or null confidenceLevel")
+        if confidenceLevel > 1:
+            raise ValueError("Cannot have a confidenceLevel over 1")
+        if testLikelihood == None or testLikelihood < 0:
+            raise ValueError("Cannot have negative or null testLikelihood")
+        if testLikelihood > 1:
+            raise ValueError("Cannot have a testLikelihood over 1")
+            
         expectedSuccess: int = math.floor(testLikelihood * self.n)
         if self.likelihood >= testLikelihood:
             pVal: float = 2 * (1 - self.binomialDist.getLeftTailArea(expectedSuccess, self.n, testLikelihood))
