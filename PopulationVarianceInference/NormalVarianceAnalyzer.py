@@ -35,40 +35,40 @@ class NormalVarianceAnalyzer(IPopulationVarianceAnalyzer):
         return (math.sqrt(self.getTestStatistic(chiSquareUpper)), math.sqrt(self.getTestStatistic(chiSquareLower)))
 
     def getTestStatistic(self, testVariance: float) -> float:
-        if testVariance == None:
-            raise ValueError("Cannot have a null testVariance")
+        if testVariance == None or testVariance == 0:
+            raise ValueError("Cannot have a null or zero testVariance")
         return (self.n - 1) * self.variance / testVariance
 
-    def rightTailVarianceSignificanceTest(self, variance: float, confidenceLevel: float) -> bool:
-        if confidenceLevel == None or confidenceLevel < 0:
-            raise ValueError("Cannot have negative or null confidenceLevel")
-        if confidenceLevel > 1:
-            raise ValueError("Cannot have a confidenceLevel over 1")
+    def rightTailVarianceSignificanceTest(self, variance: float, type1Confidence: float) -> bool:
+        if type1Confidence == None or type1Confidence < 0:
+            raise ValueError("Cannot have negative or null type1Confidence")
+        if type1Confidence > 1:
+            raise ValueError("Cannot have a type1Confidence over 1")
         if variance == None:
             raise ValueError("Cannot a null test variance")
-        chiSquareUpper: float = self.chisquare.getChiSquaredUpperVal(confidenceLevel, self.df)
+        chiSquareUpper: float = self.chisquare.getChiSquaredUpperVal(type1Confidence, self.df)
         testStatistic: float = self.getTestStatistic(variance)
         return testStatistic > chiSquareUpper
 
-    def leftTailVarianceSignificanceTest(self, variance: float, confidenceLevel: float) -> bool: 
-        if confidenceLevel == None or confidenceLevel < 0:
-            raise ValueError("Cannot have negative or null confidenceLevel")
-        if confidenceLevel > 1:
-            raise ValueError("Cannot have a confidenceLevel over 1")
+    def leftTailVarianceSignificanceTest(self, variance: float, type1Confidence: float) -> bool: 
+        if type1Confidence == None or type1Confidence < 0:
+            raise ValueError("Cannot have negative or null type1Confidence")
+        if type1Confidence > 1:
+            raise ValueError("Cannot have a type1Confidence over 1")
         if variance == None:
             raise ValueError("Cannot a null test variance")
-        chiSquareLower: float = self.chisquare.getChiSquareLowerVal(confidenceLevel, self.df)
+        chiSquareLower: float = self.chisquare.getChiSquaredLowerVal(type1Confidence, self.df)
         testStatistic: float = self.getTestStatistic(variance)
         return testStatistic < chiSquareLower
 
-    def twinTailVarianceSignificanceTest(self, variance: float, confidenceLevel: float) -> bool:
-        if confidenceLevel == None or confidenceLevel < 0:
-            raise ValueError("Cannot have negative or null confidenceLevel")
-        if confidenceLevel > 1:
-            raise ValueError("Cannot have a confidenceLevel over 1")
+    def twinTailVarianceSignificanceTest(self, variance: float, type1Confidence: float) -> bool:
+        if type1Confidence == None or type1Confidence < 0:
+            raise ValueError("Cannot have negative or null type1Confidence")
+        if type1Confidence > 1:
+            raise ValueError("Cannot have a type1Confidence over 1")
         if variance == None:
             raise ValueError("Cannot a null test variance")
-        chiSquareUpper: float = self.chisquare.getChiSquaredUpperVal(confidenceLevel, self.df)
-        chiSquareLower: float = self.chisquare.getChiSquareLowerVal(confidenceLevel, self.df)
+        chiSquareUpper: float = self.chisquare.getChiSquaredUpperVal(type1Confidence, self.df)
+        chiSquareLower: float = self.chisquare.getChiSquaredLowerVal(type1Confidence, self.df)
         testStatistic: float = self.getTestStatistic(variance)
         return testStatistic > chiSquareUpper or testStatistic < chiSquareLower

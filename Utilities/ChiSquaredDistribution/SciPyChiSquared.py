@@ -29,7 +29,6 @@ class SciPyChiSquared(IChiSquaredDistribution):
             raise ValueError("Cannot have negative or null confidenceLevel")
         if confidenceLevel > 1:
             raise ValueError("Cannot have a confidenceLevel over 1")
-
         alpha: float = (1 - confidenceLevel)/2
         return self.getChiSquaredVal(1 - alpha, df)
 
@@ -40,6 +39,5 @@ class SciPyChiSquared(IChiSquaredDistribution):
             raise ValueError("Cannot have negative or null confidenceLevel")
         if confidenceLevel > 1:
             raise ValueError("Cannot have a confidenceLevel over 1")
-            
         alpha: float = (1 - confidenceLevel)/2
         return self.getChiSquaredVal(alpha, df)
