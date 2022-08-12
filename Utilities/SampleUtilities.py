@@ -21,6 +21,8 @@ class SampleUtilities:
         float
             The average of the provided values
         """
+        if values == None or len(values) == 0:
+            raise ValueError("Cannot have empty or null sample")
         return sum(values) / len(values)
 
     @staticmethod
@@ -40,6 +42,8 @@ class SampleUtilities:
         float
             The standard deviation of the provided values
         """
+        if values == None or len(values) == 0:
+            raise ValueError("Cannot have empty or null sample")
         return math.sqrt(SampleUtilities.estimateVariance(values))
 
     @staticmethod
@@ -59,6 +63,9 @@ class SampleUtilities:
         float
             The variance of the provided values
         """
+        if values == None or len(values) == 0:
+            raise ValueError("Cannot have empty or null sample")
+
         mean: float = SampleUtilities.estimateMean(values)
         n: int = len(values)
 
@@ -85,4 +92,7 @@ class SampleUtilities:
         list
             The standard deviation of the provided values
         """
+        if values == None or len(values) == 0:
+            raise ValueError("Cannot have empty or null sample")
+            
         return random.choices(values, k=len(values))

@@ -11,6 +11,10 @@ class NormalBinomialAnalyzerTests(unittest.TestCase):
         """Tests that the constructor raises an error with null values"""
         self.assertRaises(ValueError, NormalBinomialAnalyzer, values=None)
 
+    def test_constructor_valuesIllegal(self):
+        """Tests that the constructor raises an error with non 0 or 1 values"""
+        self.assertRaises(ValueError, NormalBinomialAnalyzer, values=[2, 1, 0])
+
     def test_constructor_valuesEmpty(self):
         """Tests that the constructor raises an error with empty values"""
         self.assertRaises(ValueError, NormalBinomialAnalyzer, values=[])

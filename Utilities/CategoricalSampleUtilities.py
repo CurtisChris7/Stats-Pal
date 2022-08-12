@@ -20,7 +20,15 @@ class CategoricalSampleUtilities:
         float
             The number of 1's over the total
         """
-        return sum(values) / len(values)
+        if values == None or len(values) == 0:
+            raise ValueError("Cannot have empty or null sample")
+        cntr: int = 0
+        for item in values:
+            if item != 0 and item != 1:
+                raise ValueError("All elements must be either 0 or 1")
+            cntr += item
+        
+        return cntr / len(values)
 
     @staticmethod
     def estimateStandardError(values: list) -> float:
@@ -39,5 +47,7 @@ class CategoricalSampleUtilities:
         float
             The variance of the provided values
         """
+        if values == None or len(values) == 0:
+            raise ValueError("Cannot have empty or null sample")
         likelihood: float = CategoricalSampleUtilities.estimateLikelihood(values)
         return math.sqrt( (likelihood * (1 - likelihood)) / len(values) )
