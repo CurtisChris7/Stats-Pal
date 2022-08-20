@@ -13,12 +13,12 @@ class SciPyTDistribution(ITDistribution):
         
         return t.cdf(val, df)
 
-    def getTValue(self, targetArea: float, df: int) -> float:
-        if targetArea == None or targetArea < 0:
-            raise ValueError("Cannot pass a negative or null area value")
+    def getTPercentileValue(self, percentile: float, df: int) -> float:
+        if percentile == None or percentile < 0:
+            raise ValueError("Cannot pass a negative or null percentile")
         if df == None or df < 0:
             raise ValueError("Cannot pass a negative or null df value")
-        if targetArea > 1:
+        if percentile > 1:
             raise ValueError("Target area cannot be greater than one")
 
-        return t.ppf(targetArea, df)
+        return t.ppf(percentile, df)

@@ -32,47 +32,47 @@ class SciPyChiSquaredTests(unittest.TestCase):
         chiSquareDist: SciPyChiSquared = SciPyChiSquared()
         self.assertRaises(ValueError, chiSquareDist.getLeftTailArea, 1.96, -1)
 
-    def test_getChiSquaredVal_whenCalled(self):
+    def test_getChiSquaredPercentileVal_whenCalled(self):
         """
         Tests the value of getChiSquaredVal when the given arguments within range of the bounds
         """
         chiSquareDist: SciPyChiSquared = SciPyChiSquared()
-        self.assertAlmostEqual(chiSquareDist.getChiSquaredVal(0.99, 8), 20.090235029663233)
+        self.assertAlmostEqual(chiSquareDist.getChiSquaredPercentileVal(0.99, 8), 20.090235029663233)
 
-    def test_getChiSquaredVal_whenDFNegative(self):    
+    def test_getChiSquaredPercentileVal_whenDFNegative(self):    
         """
         Tests that the getChiSquaredVal function raises a value exception when given a negative df argument
         """
         chiSquareDist: SciPyChiSquared = SciPyChiSquared()
-        self.assertRaises(ValueError, chiSquareDist.getChiSquaredVal, 1.96, -1)
+        self.assertRaises(ValueError, chiSquareDist.getChiSquaredPercentileVal, 1.96, -1)
 
-    def test_getChiSquaredVal_whenDFNone(self):    
+    def test_getChiSquaredPercentileVal_whenDFNone(self):    
         """
         Tests that the getChiSquaredVal function raises a value exception when given a null df argument
         """
         chiSquareDist: SciPyChiSquared = SciPyChiSquared()
-        self.assertRaises(ValueError, chiSquareDist.getChiSquaredVal, 1.96, None)
+        self.assertRaises(ValueError, chiSquareDist.getChiSquaredPercentileVal, 1.96, None)
 
-    def test_getChiSquaredVal_whenAreaNegative(self):    
+    def test_getChiSquaredPercentileVal_whenAreaNegative(self):    
         """
         Tests that the getChiSquaredVal function raises a value exception when given a negative Area argument
         """
         chiSquareDist: SciPyChiSquared = SciPyChiSquared()
-        self.assertRaises(ValueError, chiSquareDist.getChiSquaredVal, -1, 5)
+        self.assertRaises(ValueError, chiSquareDist.getChiSquaredPercentileVal, -1, 5)
 
-    def test_getChiSquaredVal_whenAreaOverOne(self):    
+    def test_getChiSquaredPercentileVal_whenAreaOverOne(self):    
         """
         Tests that the getChiSquaredVal function raises a value exception when given a too large Area argument
         """
         chiSquareDist: SciPyChiSquared = SciPyChiSquared()
-        self.assertRaises(ValueError, chiSquareDist.getChiSquaredVal, 2, 5)
+        self.assertRaises(ValueError, chiSquareDist.getChiSquaredPercentileVal, 2, 5)
 
-    def test_getChiSquaredVal_whenAreaNone(self):    
+    def test_getChiSquaredPercentileVal_whenAreaNone(self):    
         """
         Tests that the getChiSquaredVal function raises a value exception when given a null Area argument
         """
         chiSquareDist: SciPyChiSquared = SciPyChiSquared()
-        self.assertRaises(ValueError, chiSquareDist.getChiSquaredVal, None, 5)
+        self.assertRaises(ValueError, chiSquareDist.getChiSquaredPercentileVal, None, 5)
 
     def test_getChiSquaredUpperVal_whenCalled(self):
         """

@@ -62,7 +62,7 @@ class NormalBinomialAnalyzer(IBinomialPopulationAnalyzer):
         if self.likelihood == 1:
             return (math.pow((alpha/2), 1/self.n), 1)
 
-        zSquaredVal: float = (self.normalDist.getZValue(1 - alpha) ** 2)
+        zSquaredVal: float = (self.normalDist.getZPercentileValue(1 - alpha) ** 2)
 
         newSuccessCount: float = (self.likelihood * self.n ) + (0.5 * zSquaredVal)
         newN: float = self.n + zSquaredVal
@@ -81,7 +81,7 @@ class NormalBinomialAnalyzer(IBinomialPopulationAnalyzer):
             raise ValueError("Cannot have negative or null width")
 
         alpha: float = (1 - confidenceLevel) / 2
-        return (self.normalDist.getZValue(1 - alpha) ** 2) * self.likelihood * (1 - self.likelihood) / (width ** 2)
+        return (self.normalDist.getZPercentileValue(1 - alpha) ** 2) * self.likelihood * (1 - self.likelihood) / (width ** 2)
 
     def getTestStatistic(self, testLikelihood: float) -> float:
         if testLikelihood == None or testLikelihood < 0:

@@ -26,7 +26,7 @@ class ITDistribution(ABC):
         pass
 
     @abstractmethod
-    def getTValue(self, targetArea: float, df: int) -> float:
+    def getTPercentileValue(self, percentile: float, df: int) -> float:
         """
         Description
         ----------
@@ -35,8 +35,8 @@ class ITDistribution(ABC):
 
         Parameters
         ----------
-        targetArea : float
-            The desired area under the standard normal curve
+        percentile : float
+            The desired area under the curve
 
         df: int
             The number of degrees of freedom

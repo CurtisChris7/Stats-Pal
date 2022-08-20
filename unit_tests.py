@@ -10,6 +10,7 @@ from UnitTests.SampleUtilitiesTests import SampleUtilitiesTests
 from UnitTests.CategoricalSampleUtilitiesTests import CategoricalSampleUtilitiesTests
 from UnitTests.TDistributionCentralValueAnalyzerTests import TDistributionCentralValueAnalyzerTests
 from UnitTests.NormalVarianceAnalyzerTests import NormalVarianceAnalyzerTests
+from UnitTests.SciPyFDistributionTests import SciPyFDistributionTests
 
 if __name__ == "__main__":
     unittest.main()

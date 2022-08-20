@@ -4,7 +4,7 @@ class IChiSquaredDistribution(ABC):
     """Interface for Chi Squared distribution"""
 
     @abstractmethod
-    def getChiSquaredVal(self, targetArea: float, df: int) -> float:
+    def getChiSquaredPercentileVal(self, percentile: float, df: int) -> float:
         """
         Description
         ----------
@@ -13,8 +13,8 @@ class IChiSquaredDistribution(ABC):
 
         Parameters
         ----------
-        targetArea : float
-            The desired area under the standard normal curve
+        percentile : float
+            The desired area under the curve
 
         df: int
             The number of degrees of freedom

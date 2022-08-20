@@ -41,7 +41,7 @@ class TDistributionCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
         if confidenceLevel > 1:
             raise ValueError("Cannot have a confidenceLevel over 1")
 
-        width: float = self.tDist.getTValue(confidenceLevel + ((1 - confidenceLevel)/2), self.df) * self.stdDev / math.sqrt(self.n)
+        width: float = self.tDist.getTPercentileValue(confidenceLevel + ((1 - confidenceLevel)/2), self.df) * self.stdDev / math.sqrt(self.n)
         return (self.mean - width, self.mean + width)
 
     def sampleSizeForConfidenceInterval(self, confidenceLevel: float, width: float) -> float:

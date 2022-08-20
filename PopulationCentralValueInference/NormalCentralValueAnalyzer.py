@@ -41,7 +41,7 @@ class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
         if confidenceLevel > 1:
             raise ValueError("Cannot have a confidenceLevel over 1")
 
-        zVal: float = self.normalTable.getZValue(1 - ((1-confidenceLevel)/2))
+        zVal: float = self.normalTable.getZPercentileValue(1 - ((1-confidenceLevel)/2))
         width: float = zVal * self.stdDev / math.sqrt(self.n)
         return (self.mean - width, self.mean + width)
 
@@ -57,8 +57,8 @@ class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
         if delta == None:
             raise ValueError("Cannot have null delta")
 
-        type1ZVal: float = self.normalTable.getZValue(1 - ((1-type1Confidence)/2))
-        type2ZVal: float = self.normalTable.getZValue(1 - (1 - type2Confidence))
+        type1ZVal: float = self.normalTable.getZPercentileValue(1 - ((1-type1Confidence)/2))
+        type2ZVal: float = self.normalTable.getZPercentileValue(1 - (1 - type2Confidence))
         return self.n * (self.stdDev ** 2) * ((type1ZVal + type2ZVal) ** 2) / (delta ** 2)
 
     def sampleSizeForConfidenceInterval(self, confidenceLevel: float, width: float) -> float:
@@ -69,7 +69,7 @@ class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
         if width == None or width < 0:
             raise ValueError("Cannot have negative or null width")
 
-        zVal: float = self.normalTable.getZValue(1 - ((1-confidenceLevel)/2))
+        zVal: float = self.normalTable.getZPercentileValue(1 - ((1-confidenceLevel)/2))
         e: float = width / 2
         return self.n * (zVal**2) * (self.stdDev**2) / (e**2)
 
@@ -126,7 +126,7 @@ class NormalCentralValueAnalyzer(IPopulationCentralValueAnalyzer):
         if mean == None:
             raise ValueError("Cannot a null test mean")
 
-        zVal: float = self.normalTable.getZValue(type1Confidence)
+        zVal: float = self.normalTable.getZPercentileValue(type1Confidence)
         betaVal: float = zVal - ( math.sqrt(self.n) * abs(mean - self.mean) / self.stdDev)
         return 1 - self.normalTable.getLeftTailArea(betaVal)
 

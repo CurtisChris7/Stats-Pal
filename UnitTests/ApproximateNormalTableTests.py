@@ -80,30 +80,30 @@ class ApproximateNormalTableTests(unittest.TestCase):
         table: ApproximateNormalTable = ApproximateNormalTable()
         self.assertRaises(ValueError, table.getLeftTailArea, None)
 
-    def test_getZValue_whenCalled(self):
+    def test_getZPercentileValue_whenCalled(self):
         """
         Tests the z value when called normally
         """
         table: ApproximateNormalTable = ApproximateNormalTable()
-        self.assertAlmostEqual(table.getZValue(0.975), 1.96)
+        self.assertAlmostEqual(table.getZPercentileValue(0.975), 1.96)
 
-    def test_getZValue_whenNegative(self):
+    def test_getZPercentileValue_whenNegative(self):
         """
         Tests that the getZValue function raises a value exception when given a negative argument
         """
         table: ApproximateNormalTable = ApproximateNormalTable()
-        self.assertRaises(ValueError, table.getZValue, -1)
+        self.assertRaises(ValueError, table.getZPercentileValue, -1)
 
-    def test_getZValue_whenNone(self):
+    def test_getZPercentileValue_whenNone(self):
         """
         Tests that the getZValue function raises a value exception when given a null argument
         """
         table: ApproximateNormalTable = ApproximateNormalTable()
-        self.assertRaises(ValueError, table.getZValue, None)
+        self.assertRaises(ValueError, table.getZPercentileValue, None)
 
-    def test_getZValue_whenOverOne(self):
+    def test_getZPercentileValue_whenOverOne(self):
         """
         Tests that the getZValue function raises a value exception when given an argument over 1
         """
         table: ApproximateNormalTable = ApproximateNormalTable()
-        self.assertRaises(ValueError, table.getZValue, 2)
+        self.assertRaises(ValueError, table.getZPercentileValue, 2)
