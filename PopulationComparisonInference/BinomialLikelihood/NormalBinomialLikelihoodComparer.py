@@ -86,5 +86,4 @@ class NormalBinomialLikelihoodComparer(IPopulationBinomialLikelihoodComparer):
         testStat: float = self.getTestStatistic()
         alpha: float = (1 - type1Confidence)/2
         zVal: float = self.normDist.getZPercentileValue(1-alpha)
-        print(testStat, zVal)
         return abs(testStat) >= zVal
