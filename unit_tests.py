@@ -15,6 +15,7 @@ from UnitTests.NormalCentralValueComparerTests import NormalCentralValueComparer
 from UnitTests.EqualVarianceNormalCentralValueComparerTests import EqualVarianceNormalCentralValueComparerTests
 from UnitTests.PairedNormalCentralValueComparerTests import PairedNormalCentralValueComparerTests
 from UnitTests.NormalVarianceComparerTests import NormalVarianceComparerTests
+from UnitTests.NormalBinomialLikelihoodComparerTests import NormalBinomialLikelihoodComparerTests
 
 if __name__ == "__main__":
     unittest.main()

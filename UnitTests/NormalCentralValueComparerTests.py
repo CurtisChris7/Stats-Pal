@@ -159,7 +159,7 @@ class NormalCentralValueComparerTests(unittest.TestCase):
         comparer.stdDev2 = 17.4
         comparer.var2 = comparer.stdDev2 ** 2
         comparer.df = 13
-        self.assertTrue(comparer.twinTailDeltaSignificanceTest(0, 0.95))
+        self.assertTrue(comparer.twinTailDeltaSignificanceTest(-1000, 0.95))
 
     def test_twinTailDeltaSignificanceTest_type1ConfidenceNone(self):
         """Tests that twinTailDeltaSignificanceTest raises an error when given a null type1Confidence"""

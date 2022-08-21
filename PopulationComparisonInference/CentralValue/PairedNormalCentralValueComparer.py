@@ -90,4 +90,4 @@ class PairedNormalCentralValueComparer(IPopulationCentralValueComparer):
         testStat: float = self.getTestStatistic(delta)
         alpha: float = (1 - type1Confidence)/2
         tVal: float = self.tDist.getTPercentileValue(1-alpha, self.df)
-        return abs(testStat) >= -tVal
+        return abs(testStat) >= tVal
