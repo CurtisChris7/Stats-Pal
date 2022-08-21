@@ -13,6 +13,7 @@ from UnitTests.NormalVarianceAnalyzerTests import NormalVarianceAnalyzerTests
 from UnitTests.SciPyFDistributionTests import SciPyFDistributionTests
 from UnitTests.NormalCentralValueComparerTests import NormalCentralValueComparerTests
 from UnitTests.EqualVarianceNormalCentralValueComparerTests import EqualVarianceNormalCentralValueComparerTests
+from UnitTests.PairedNormalCentralValueComparerTests import PairedNormalCentralValueComparerTests
 
 if __name__ == "__main__":
     unittest.main()

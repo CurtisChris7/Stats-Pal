@@ -29,7 +29,7 @@ class NormalCentralValueComparer(IPopulationCentralValueComparer):
         if sample2 == None or len(sample2) == 0:
             raise ValueError("Cannot have empty or null sample2")
         if tDist == None:
-            raise ValueError("Cannot have null normalDist")
+            raise ValueError("Cannot have null tDist")
 
         self.sample1: list = sample1
         self.mean1: float = SampleUtilities.estimateMean(sample1)
