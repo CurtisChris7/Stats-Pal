@@ -5,7 +5,7 @@ from Utilities.TDistribution.ITDistribution import ITDistribution
 class SciPyTDistribution(ITDistribution):
     """Class implementing the ITDistribution interface using scipy"""
 
-    def getLeftTailArea(self, val: float, df: int) -> float:
+    def getLeftTailArea(self, val: float, df: float) -> float:
         if val == None:
             raise ValueError("Cannot pass a null t value")
         if df == None or df < 0:
@@ -13,7 +13,7 @@ class SciPyTDistribution(ITDistribution):
         
         return t.cdf(val, df)
 
-    def getTPercentileValue(self, percentile: float, df: int) -> float:
+    def getTPercentileValue(self, percentile: float, df: float) -> float:
         if percentile == None or percentile < 0:
             raise ValueError("Cannot pass a negative or null percentile")
         if df == None or df < 0:

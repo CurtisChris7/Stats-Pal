@@ -60,7 +60,6 @@ class SciPyFDistributionTests(unittest.TestCase):
         fDist: SciPyFDistribution = SciPyFDistribution()
         self.assertRaises(ValueError, fDist.getFPercentileValue, None, 10, 7)
 
-
     def test_getFLowerValue_whenCalled(self):
         """
         Tests the value of getFPercentileValue when the given arguments within range of the bounds
@@ -116,7 +115,6 @@ class SciPyFDistributionTests(unittest.TestCase):
         """
         fDist: SciPyFDistribution = SciPyFDistribution()
         self.assertRaises(ValueError, fDist.getFLowerValue, None, 10, 7)
-
 
     def test_getFUpperValue_whenCalled(self):
         """
