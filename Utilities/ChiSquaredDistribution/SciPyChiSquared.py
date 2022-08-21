@@ -13,14 +13,14 @@ class SciPyChiSquared(IChiSquaredDistribution):
             raise ValueError("Cannot pass a negative or null df value")
         return chi.cdf(math.sqrt(chiVal), df)
 
-    def getChiSquaredVal(self, targetArea: float, df: int) -> float:
-        if targetArea == None or targetArea < 0:
-            raise ValueError("Cannot pass a negative or null area value")
+    def getChiSquaredPercentileVal(self, percentile: float, df: int) -> float:
+        if percentile == None or percentile < 0:
+            raise ValueError("Cannot pass a negative or null percentile")
         if df == None or df < 0:
             raise ValueError("Cannot pass a negative or null df value")
-        if targetArea > 1:
+        if percentile > 1:
             raise ValueError("Target area cannot be greater than one")
-        return chi.ppf(targetArea, df)**2
+        return chi.ppf(percentile, df)**2
 
     def getChiSquaredUpperVal(self, confidenceLevel: float, df: int) -> float:
         if df == None or df < 0:
@@ -30,7 +30,7 @@ class SciPyChiSquared(IChiSquaredDistribution):
         if confidenceLevel > 1:
             raise ValueError("Cannot have a confidenceLevel over 1")
         alpha: float = (1 - confidenceLevel)/2
-        return self.getChiSquaredVal(1 - alpha, df)
+        return self.getChiSquaredPercentileVal(1 - alpha, df)
 
     def getChiSquaredLowerVal(self, confidenceLevel: float, df: int) -> float:
         if df == None or df < 0:
@@ -40,4 +40,4 @@ class SciPyChiSquared(IChiSquaredDistribution):
         if confidenceLevel > 1:
             raise ValueError("Cannot have a confidenceLevel over 1")
         alpha: float = (1 - confidenceLevel)/2
-        return self.getChiSquaredVal(alpha, df)
+        return self.getChiSquaredPercentileVal(alpha, df)

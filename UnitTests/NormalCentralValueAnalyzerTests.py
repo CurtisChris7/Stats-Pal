@@ -79,42 +79,42 @@ class NormalCentralValueAnalyzerTests(unittest.TestCase):
         self.assertRaises(ValueError, analyzer.sampleSizeForConfidenceInterval, 0.95, -1)
 
     def test_sampleSizeForTesting_whenCalled(self):
-        """Tests the value of getTestStatistic when called with legal arguments"""
+        """Tests the value of sampleSizeForTesting when called with legal arguments"""
         analyzer: NormalCentralValueAnalyzer = NormalCentralValueAnalyzer(TEST_VALUES)
         self.assertAlmostEqual(analyzer.sampleSizeForTesting(type1Confidence=0.95, type2Confidence=0.75, delta=0.3), 31.4306944411)
 
     def test_sampleSizeForTesting_type1ConfidenceNone(self):
-        """Tests that getConfidenceInterval raises an error when given a type1Confidence"""
+        """Tests that sampleSizeForTesting raises an error when given a type1Confidence"""
         analyzer: NormalCentralValueAnalyzer = NormalCentralValueAnalyzer(TEST_VALUES)
         self.assertRaises(ValueError,analyzer.sampleSizeForTesting, type1Confidence=None, type2Confidence=0.75, delta=0.3)
 
     def test_sampleSizeForTesting_type1ConfidenceNegative(self):
-        """Tests that getConfidenceInterval raises an error when given a type1Confidence"""
+        """Tests that sampleSizeForTesting raises an error when given a type1Confidence"""
         analyzer: NormalCentralValueAnalyzer = NormalCentralValueAnalyzer(TEST_VALUES)
         self.assertRaises(ValueError,analyzer.sampleSizeForTesting, type1Confidence=-1, type2Confidence=0.75, delta=0.3)
 
     def test_sampleSizeForTesting_type1ConfidenceTooLarge(self):
-        """Tests that getConfidenceInterval raises an error when given a type1Confidence"""
+        """Tests that sampleSizeForTesting raises an error when given a type1Confidence"""
         analyzer: NormalCentralValueAnalyzer = NormalCentralValueAnalyzer(TEST_VALUES)
         self.assertRaises(ValueError,analyzer.sampleSizeForTesting, type1Confidence=2, type2Confidence=0.75, delta=0.3)
 
     def test_sampleSizeForTesting_type2ConfidenceNone(self):
-        """Tests that getConfidenceInterval raises an error when given a type2Confidence"""
+        """Tests that sampleSizeForTesting raises an error when given a type2Confidence"""
         analyzer: NormalCentralValueAnalyzer = NormalCentralValueAnalyzer(TEST_VALUES)
         self.assertRaises(ValueError,analyzer.sampleSizeForTesting, type1Confidence=0.95, type2Confidence=None, delta=0.3)
 
     def test_sampleSizeForTesting_type2ConfidenceNegative(self):
-        """Tests that getConfidenceInterval raises an error when given a type2Confidence"""
+        """Tests that sampleSizeForTesting raises an error when given a type2Confidence"""
         analyzer: NormalCentralValueAnalyzer = NormalCentralValueAnalyzer(TEST_VALUES)
         self.assertRaises(ValueError,analyzer.sampleSizeForTesting, type1Confidence=0.95, type2Confidence=-1, delta=0.3)
 
     def test_sampleSizeForTesting_type2ConfidenceTooLarge(self):
-        """Tests that getConfidenceInterval raises an error when given a type2Confidence"""
+        """Tests that sampleSizeForTesting raises an error when given a type2Confidence"""
         analyzer: NormalCentralValueAnalyzer = NormalCentralValueAnalyzer(TEST_VALUES)
         self.assertRaises(ValueError,analyzer.sampleSizeForTesting, type1Confidence=0.95, type2Confidence=2, delta=0.3)
 
     def test_sampleSizeForTesting_deltaNone(self):
-        """Tests that getConfidenceInterval raises an error when given a null delta"""
+        """Tests that sampleSizeForTesting raises an error when given a null delta"""
         analyzer: NormalCentralValueAnalyzer = NormalCentralValueAnalyzer(TEST_VALUES)
         self.assertRaises(ValueError,analyzer.sampleSizeForTesting, type1Confidence=0.95, type2Confidence=0.3, delta=None)
 
@@ -124,7 +124,7 @@ class NormalCentralValueAnalyzerTests(unittest.TestCase):
         self.assertAlmostEqual(analyzer.getTestStatistic(0.3), 2.2050588385131595)
 
     def test_getTestStatistic_meanNull(self):
-        """Tests that getConfidenceInterval raises an error when given a null mean"""
+        """Tests that getTestStatistic raises an error when given a null mean"""
         analyzer: NormalCentralValueAnalyzer = NormalCentralValueAnalyzer(TEST_VALUES)
         self.assertRaises(ValueError, analyzer.getTestStatistic, None)
 
