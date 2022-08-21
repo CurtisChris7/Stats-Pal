@@ -90,11 +90,7 @@ class NormalCentralValueComparerTests(unittest.TestCase):
         comparer.var2 = comparer.stdDev2 ** 2
         comparer.df = 13
         self.assertFalse(comparer.rightTailDeltaSignificanceTest(0, 0.95))
-
-    def test_rightTailDeltaSignificanceTest_whenCalled(self):
-        comparer: NormalCentralValueComparer = NormalCentralValueComparer([1, 2], [1, 2])
-        self.assertRaises(ValueError, comparer.getTestStatistic, None)
-
+    
     def test_rightTailDeltaSignificanceTest_type1ConfidenceNone(self):
         """Tests that rightTailDeltaSignificanceTest raises an error when given a null type1Confidence"""
         analyzer: NormalCentralValueComparer = NormalCentralValueComparer([1, 2], [1, 2])
@@ -129,10 +125,6 @@ class NormalCentralValueComparerTests(unittest.TestCase):
         comparer.var2 = comparer.stdDev2 ** 2
         comparer.df = 13
         self.assertFalse(comparer.leftTailDeltaSignificanceTest(0, 0.95))
-
-    def test_leftTailDeltaSignificanceTest_whenCalled(self):
-        comparer: NormalCentralValueComparer = NormalCentralValueComparer([1, 2], [1, 2])
-        self.assertRaises(ValueError, comparer.getTestStatistic, None)
 
     def test_leftTailDeltaSignificanceTest_type1ConfidenceNone(self):
         """Tests that leftTailDeltaSignificanceTest raises an error when given a null type1Confidence"""

@@ -14,6 +14,7 @@ from UnitTests.SciPyFDistributionTests import SciPyFDistributionTests
 from UnitTests.NormalCentralValueComparerTests import NormalCentralValueComparerTests
 from UnitTests.EqualVarianceNormalCentralValueComparerTests import EqualVarianceNormalCentralValueComparerTests
 from UnitTests.PairedNormalCentralValueComparerTests import PairedNormalCentralValueComparerTests
+from UnitTests.NormalVarianceComparerTests import NormalVarianceComparerTests
 
 if __name__ == "__main__":
     unittest.main()

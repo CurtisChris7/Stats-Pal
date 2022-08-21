@@ -35,15 +35,15 @@ class EqualVarianceNormalCentralValueComparer(IPopulationCentralValueComparer):
         self.mean1: float = SampleUtilities.estimateMean(sample1)
         self.stdDev1: float = SampleUtilities.estimateStdDev(sample1)
         self.var1: float = self.stdDev1 ** 2
-        self.n1: float = len(sample1)
+        self.n1: int = len(sample1)
         self.sample2: list = sample2
         self.mean2: float = SampleUtilities.estimateMean(sample2)
         self.stdDev2: float = SampleUtilities.estimateStdDev(sample2)
         self.var2: float = self.stdDev2 ** 2
-        self.n2: float = len(sample2)
-        self.sp = self.__getSP()
-        self.df = self.n1 + self.n2 - 2
-        self.tDist = tDist
+        self.n2: int = len(sample2)
+        self.sp: float = self.__getSP()
+        self.df: float = self.n1 + self.n2 - 2
+        self.tDist: ITDistribution = tDist
     
     def __getSP(self) -> float:
         return sqrt( (((self.n1 - 1) * (self.stdDev1)) + ((self.n2 - 1) * (self.stdDev2))) / (self.n1 + self.n2 - 2) )

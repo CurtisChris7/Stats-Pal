@@ -35,15 +35,15 @@ class NormalCentralValueComparer(IPopulationCentralValueComparer):
         self.mean1: float = SampleUtilities.estimateMean(sample1)
         self.stdDev1: float = SampleUtilities.estimateStdDev(sample1)
         self.var1: float = self.stdDev1 ** 2
-        self.n1: float = len(sample1)
+        self.n1: int = len(sample1)
         self.sample2: list = sample2
         self.mean2: float = SampleUtilities.estimateMean(sample2)
         self.stdDev2: float = SampleUtilities.estimateStdDev(sample2)
         self.var2: float = self.stdDev2 ** 2
-        self.n2: float = len(sample2)
-        self.c = self.__getCValue()
-        self.df = self.__getDf()
-        self.tDist = tDist
+        self.n2: int = len(sample2)
+        self.c: float = self.__getCValue()
+        self.df: float = self.__getDf()
+        self.tDist: ITDistribution = tDist
     
     def __getCValue(self) -> float:
         return self.var1 / (self.n1 * ((self.var1/self.n1) + (self.var2/self.n2)))

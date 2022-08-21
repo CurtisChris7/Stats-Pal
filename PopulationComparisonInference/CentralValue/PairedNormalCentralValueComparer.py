@@ -33,12 +33,12 @@ class PairedNormalCentralValueComparer(IPopulationCentralValueComparer):
         if tDist == None:
             raise ValueError("Cannot have null tDist")
 
-        self.values = PairedNormalCentralValueComparer.__getDifferenceList(sample1, sample2)
-        self.mean = SampleUtilities.estimateMean(self.values)
-        self.stdDev = SampleUtilities.estimateStdDev(self.values)
-        self.n = len(sample1)
-        self.df = self.n - 1
-        self.tDist = tDist
+        self.values: list = PairedNormalCentralValueComparer.__getDifferenceList(sample1, sample2)
+        self.mean: float = SampleUtilities.estimateMean(self.values)
+        self.stdDev: float = SampleUtilities.estimateStdDev(self.values)
+        self.n: int = len(sample1)
+        self.df: float = self.n - 1
+        self.tDist: ITDistribution = tDist
 
     def __getDifferenceList(sample1: list, sample2: list) -> list:
         differencesList: list = []

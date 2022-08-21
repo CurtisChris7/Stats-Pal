@@ -8,12 +8,12 @@ class IPopulationCentralValueComparer(ABC):
         """
         Description
         ----------
-        Contructs a confidence interval of the population mean
+        Contructs a confidence interval of the difference in population means
 
         Parameters
         ----------
         confidenceLevel : float
-            The likelihood of the true mean falling in this interval
+            The likelihood of the true value falling in this interval
 
         Returns
         -------
