@@ -112,15 +112,15 @@ class ApproximateNormalTable(INormalDistribution):
 
         return self.table[val]
 
-    def getZValue(self, targetArea: float) -> float:
-        if targetArea == None or targetArea < 0:
-            raise ValueError("Cannot pass a negative or null area value")
-        if targetArea > 1:
+    def getZPercentileValue(self, percentile: float) -> float:
+        if percentile == None or percentile < 0:
+            raise ValueError("Cannot pass a negative or null percentile")
+        if percentile > 1:
             raise ValueError("Target area cannot be greater than one")
 
         for key in self.table:
             val = self.table[key]
-            if val >= targetArea:
+            if val >= percentile:
                 return key
 
         return self.uppperbound

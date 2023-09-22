@@ -4,7 +4,7 @@ class ITDistribution(ABC):
     """Interface for student's t distribution"""
 
     @abstractmethod
-    def getLeftTailArea(self, val: float, df: int) -> float:
+    def getLeftTailArea(self, val: float, df: float) -> float:
         """
         Description
         ----------
@@ -15,7 +15,7 @@ class ITDistribution(ABC):
         val : float
             A candidate t value
 
-        df: int
+        df: float
             The number of degrees of freedom
 
         Returns
@@ -26,7 +26,7 @@ class ITDistribution(ABC):
         pass
 
     @abstractmethod
-    def getTValue(self, targetArea: float, df: int) -> float:
+    def getTPercentileValue(self, percentile: float, df: float) -> float:
         """
         Description
         ----------
@@ -35,10 +35,10 @@ class ITDistribution(ABC):
 
         Parameters
         ----------
-        targetArea : float
-            The desired area under the standard normal curve
+        percentile : float
+            The desired area under the curve
 
-        df: int
+        df: float
             The number of degrees of freedom
 
         Returns

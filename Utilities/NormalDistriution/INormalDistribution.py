@@ -23,7 +23,7 @@ class INormalDistribution(ABC):
         pass
 
     @abstractmethod
-    def getZValue(self, targetArea: float) -> float:
+    def getZPercentileValue(self, targetArea: float) -> float:
         """
         Description
         ----------

@@ -44,6 +44,8 @@ class SampleUtilities:
         """
         if values == None or len(values) == 0:
             raise ValueError("Cannot have empty or null sample")
+        if len(values) == 1:
+            raise ValueError("Cannot calculate standard deviation of 1 element")
         return math.sqrt(SampleUtilities.estimateVariance(values))
 
     @staticmethod
@@ -65,6 +67,8 @@ class SampleUtilities:
         """
         if values == None or len(values) == 0:
             raise ValueError("Cannot have empty or null sample")
+        if len(values) == 1:
+            raise ValueError("Cannot calculate variance of 1 element")
 
         mean: float = SampleUtilities.estimateMean(values)
         n: int = len(values)
